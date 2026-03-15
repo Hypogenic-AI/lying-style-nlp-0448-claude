@@ -1,0 +1,13 @@
+{
+  "model": "gpt-4.1",
+  "temperature": 0.7,
+  "max_tokens": 300,
+  "n_questions": 150,
+  "conditions": [
+    "roleplay_lie",
+    "truthful",
+    "direct_lie"
+  ],
+  "seed": 42,
+  "timestamp": "2026-03-15 21:18:56"
+}

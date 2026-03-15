@@ -1,0 +1,10 @@
+PDF: papers/pauli2024_tell_truth_deception.pdf
+Total pages: 15
+Pages per chunk: 3
+
+Chunks:
+  pauli2024_tell_truth_deception_chunk_001.pdf: pages 1-3
+  pauli2024_tell_truth_deception_chunk_002.pdf: pages 4-6
+  pauli2024_tell_truth_deception_chunk_003.pdf: pages 7-9
+  pauli2024_tell_truth_deception_chunk_004.pdf: pages 10-12
+  pauli2024_tell_truth_deception_chunk_005.pdf: pages 13-15

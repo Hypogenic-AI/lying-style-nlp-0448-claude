@@ -1,0 +1,33 @@
+\section{Related Work}
+\label{sec:related}
+
+\para{Internal representation probing.}
+A growing body of work shows that LLMs encode truthfulness in their hidden states.
+\citet{azaria2023internal} train classifiers on activation vectors to detect when an LLM ``knows'' it is producing false output, achieving over 90\% accuracy across six factual domains.
+\citet{marks2023geometry} discover that truthfulness is represented as a linear direction in LLaMA's activation space, suggesting a consistent internal geometry of truth.
+\citet{burger2024truth} extend this finding with a two-dimensional truth subspace that generalizes across topics, models, and languages, reaching 93.8\% accuracy on real-world lying scenarios.
+These results establish that truth and falsehood are internally distinguishable, but they require white-box access to model activations---unavailable for closed-source APIs.
+Our work asks whether this internal distinction surfaces in the text itself.
+
+\para{Behavioral lie detection.}
+\citet{pacchiardi2024catch} propose a black-box approach: after a suspected lie, they ask 48 follow-up ``elicitation questions'' and classify the response pattern, achieving AUC of 1.0 in-distribution and 0.89 cross-architecture.
+This demonstrates that lying creates a detectable behavioral fingerprint extending beyond the initial response.
+However, this method requires multi-turn interaction, which is not always feasible.
+We complement this line of work by analyzing whether a \emph{single} response contains sufficient stylistic signal to detect deception.
+
+\para{Strategic deception in LLMs.}
+Recent studies show that LLMs can engage in deception strategically, not only when explicitly instructed.
+\citet{scheurer2023deception} demonstrate that LLMs deceive in agentic scenarios (such as insider trading simulations) without explicit instruction, while \citet{ogara2023hoodwinked} test LLM deception in interactive social deduction games.
+\citet{wang2025thinking} study how chain-of-thought reasoning models formulate deceptive strategies with detectable patterns in their reasoning traces.
+These findings motivate the study of deceptive language style as a potential detection mechanism.
+
+\para{Stylometry and machine-generated text.}
+\citet{schuster2019limitations} directly address whether stylometric features can detect deceptive intent in machine-generated text.
+Using GPT-2-era models, they find that while stylometry can distinguish human from machine text (provenance detection), it cannot distinguish deceptive from legitimate machine text (intent detection).
+They conclude that language models generate stylistically consistent text regardless of the content's veracity.
+Our work revisits this conclusion with modern instruction-tuned models and finds the opposite result: RLHF-trained models \emph{do} exhibit measurable stylistic shifts when instructed to lie.
+
+\para{Deception cues in language.}
+\citet{hazra2024tell} identify four linguistic cues of deception---ambiguity, overconfidence, half-truths, and entailment violations---using a concept-bottleneck model applied to human deception data from the ``To Tell The Truth'' game show.
+\citet{jones2024lies} examine LLMs' capacity for persuasion and deception through distributional language statistics.
+Our feature set draws on established deception cue categories from psychology \citep{newman2003lying}, adapted for LLM-generated text with features targeting hedging, certainty, and structural patterns.

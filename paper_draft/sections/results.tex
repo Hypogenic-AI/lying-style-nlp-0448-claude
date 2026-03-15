@@ -1,0 +1,116 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Distributional Differences}
+\label{sec:distributional}
+
+\Tabref{tab:descriptive} presents the descriptive statistics for the ten most informative features across the three conditions.
+Several patterns are immediately apparent.
+
+\begin{table}[t]
+    \centering
+    \caption{Descriptive statistics (mean $\pm$ std) for key features across the three prompting conditions. Features with significant pairwise differences (Bonferroni-corrected $p < 0.05$) between \condtruth and at least one lying condition are marked with \textsuperscript{*}.}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}lccc@{}}
+        \toprule
+        \textbf{Feature} & \textbf{\condtruth} & \textbf{\conddirect} & \textbf{\condrole} \\
+        \midrule
+        word\_count\textsuperscript{*} & 42.2 {\scriptsize $\pm$ 14.8} & 24.0 {\scriptsize $\pm$ 7.8} & 30.3 {\scriptsize $\pm$ 6.1} \\
+        num\_sentences\textsuperscript{*} & 2.37 {\scriptsize $\pm$ 0.80} & 1.56 {\scriptsize $\pm$ 0.63} & 2.23 {\scriptsize $\pm$ 0.60} \\
+        avg\_sentence\_length\textsuperscript{*} & 18.5 {\scriptsize $\pm$ 6.1} & 16.9 {\scriptsize $\pm$ 6.7} & 14.3 {\scriptsize $\pm$ 4.2} \\
+        type\_token\_ratio\textsuperscript{*} & 0.838 {\scriptsize $\pm$ 0.082} & 0.910 {\scriptsize $\pm$ 0.066} & 0.920 {\scriptsize $\pm$ 0.054} \\
+        hedging\_rate\textsuperscript{*} & 0.225 {\scriptsize $\pm$ 0.340} & 0.082 {\scriptsize $\pm$ 0.254} & 0.022 {\scriptsize $\pm$ 0.114} \\
+        certainty\_rate\textsuperscript{*} & 0.323 {\scriptsize $\pm$ 0.323} & 0.546 {\scriptsize $\pm$ 0.594} & 1.109 {\scriptsize $\pm$ 0.560} \\
+        negation\_rate & 0.013 {\scriptsize $\pm$ 0.017} & 0.011 {\scriptsize $\pm$ 0.023} & 0.031 {\scriptsize $\pm$ 0.029} \\
+        intensifier\_rate\textsuperscript{*} & 0.014 {\scriptsize $\pm$ 0.023} & 0.020 {\scriptsize $\pm$ 0.031} & 0.031 {\scriptsize $\pm$ 0.029} \\
+        exclamation\_count\textsuperscript{*} & 0.01 {\scriptsize $\pm$ 0.12} & 0.00 {\scriptsize $\pm$ 0.00} & 0.83 {\scriptsize $\pm$ 0.52} \\
+        flesch\_reading\_ease\textsuperscript{*} & 43.1 {\scriptsize $\pm$ 19.6} & 49.8 {\scriptsize $\pm$ 20.9} & 50.7 {\scriptsize $\pm$ 16.1} \\
+        \bottomrule
+    \end{tabular}
+    }
+    \label{tab:descriptive}
+\end{table}
+
+\para{Lying text is shorter.}
+Truthful responses average 42.2 words, compared to 24.0 for \conddirect ($d = -1.54$, $p < 0.0001$) and 30.3 for \condrole ($d = -1.05$, $p < 0.0001$).
+This ``elaboration gap'' is the single strongest signal: when answering truthfully, the model provides context, corrections, and caveats (\eg ``This is a common myth\ldots''), whereas lying responses deliver bare false claims without elaboration.
+
+\para{Lying text reduces hedging and increases certainty.}
+Truthful responses use hedging language at $3\times$ the rate of direct lies and $10\times$ the rate of roleplay lies.
+Conversely, \condrole responses use certainty markers at $3.4\times$ the truthful rate ($d = 1.72$, $p < 0.0001$).
+This pattern---less hedging, more certainty---reverses the well-documented human tendency to hedge more when lying \citep{newman2003lying}.
+
+\para{Roleplay lies are more extreme.}
+The \condrole condition produces more exaggerated language across multiple features: more exclamation marks ($d = 2.19$ vs.\ \condtruth), more intensifiers, and higher certainty rates.
+This creates a theatrical, over-confident tone that is highly distinctive.
+
+\subsection{Statistical Significance}
+\label{sec:significance}
+
+Of the 66 pairwise feature comparisons (21 features $\times$ 3 pairs), \textbf{36 are statistically significant} after Bonferroni correction ($p < 0.05/66 = 0.00076$).
+The distribution of significant tests across comparisons is:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item \condtruth vs.\ \conddirect: 14 of 21 features significant
+    \item \condtruth vs.\ \condrole: 12 of 21 features significant
+    \item \conddirect vs.\ \condrole: 10 of 21 features significant
+\end{itemize}
+The third comparison confirms that the two lying methods produce \emph{distinct} text distributions from each other, not merely from truthful text.
+
+\subsection{Classification Results}
+\label{sec:classification}
+
+\Tabref{tab:classification} presents classification results across all comparisons.
+
+\begin{table}[t]
+    \centering
+    \caption{Classification results (5-fold cross-validation). Chance level is 0.500 for binary and 0.333 for 3-class. Best results per comparison in \textbf{bold}.}
+    \begin{tabular}{@{}llccc@{}}
+        \toprule
+        \textbf{Comparison} & \textbf{Classifier} & \textbf{Accuracy} & \textbf{F1} & \textbf{AUC-ROC} \\
+        \midrule
+        \condtruth vs.\ All Lies & Logistic Regression & \textbf{0.900} {\scriptsize $\pm$ 0.021} & \textbf{0.926} {\scriptsize $\pm$ 0.016} & \textbf{0.940} {\scriptsize $\pm$ 0.018} \\
+        \condtruth vs.\ All Lies & Random Forest & 0.876 {\scriptsize $\pm$ 0.016} & 0.909 {\scriptsize $\pm$ 0.013} & 0.936 {\scriptsize $\pm$ 0.022} \\
+        \midrule
+        \condtruth vs.\ \conddirect & Logistic Regression & \textbf{0.857} {\scriptsize $\pm$ 0.034} & --- & \textbf{0.916} {\scriptsize $\pm$ 0.015} \\
+        \condtruth vs.\ \condrole & Logistic Regression & \textbf{0.943} {\scriptsize $\pm$ 0.027} & --- & \textbf{0.987} {\scriptsize $\pm$ 0.010} \\
+        \midrule
+        3-class & Logistic Regression & \textbf{0.844} {\scriptsize $\pm$ 0.026} & --- & --- \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:classification}
+\end{table}
+
+The logistic regression classifier achieves 90.0\% accuracy at distinguishing truthful from deceptive text, substantially above the 50\% chance level (or the 66.7\% majority-class baseline, since the lying class outnumbers the truthful class 2:1).
+Performance is highest for \condtruth vs.\ \condrole (94.3\%), confirming that roleplay lies are the most stylistically distinct.
+The 3-class classifier achieves 84.4\% accuracy (chance = 33.3\%), demonstrating that even the two lying conditions can be separated from each other.
+
+\para{Permutation test.}
+A permutation test with 200 random label shuffles yields a null distribution with mean accuracy 0.643 (reflecting the 2:1 class imbalance).
+The observed accuracy of 0.900 corresponds to $p = 0.005$, confirming that the classification result is not due to chance.
+
+\subsection{Hypothesis Testing Summary}
+\label{sec:hypothesis}
+
+\Tabref{tab:hypotheses} summarizes the outcome for each pre-registered hypothesis.
+
+\begin{table}[t]
+    \centering
+    \caption{Summary of hypothesis testing results. All hypotheses except H3 are supported; H3 shows the opposite of the predicted direction.}
+    \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Hypothesis} & \textbf{Result} & \textbf{Key Evidence} \\
+        \midrule
+        H1: Lexical differences & Supported & word\_count $d = -1.54$, TTR $d = 0.98$--$1.19$ \\
+        H2: Syntactic differences & Supported & sent.\ length $d = -0.82$, sent.\ count $d = -1.13$ \\
+        H3: More hedging when lying & Refuted & Lies have \emph{less} hedging ($d = -0.48$ to $-0.80$) \\
+        H4: Lying methods differ & Supported & 10 features differ; 3-class acc.\ = 84.4\% \\
+        H5: Classifier detection & Supported & 90.0\% accuracy, AUC = 0.94, $p = 0.005$ \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:hypotheses}
+\end{table}
+
+The refutation of H3 is particularly noteworthy.
+We expected lying text to contain more hedging, consistent with findings from human deception research.
+Instead, the model becomes \emph{more assertive} when lying---committing fully to false claims rather than hedging.
+We discuss possible explanations in \secref{sec:discussion}.

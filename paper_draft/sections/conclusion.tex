@@ -1,0 +1,12 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We show that when a modern instruction-tuned LLM is asked to lie, the resulting text is strongly and detectably different from truthful text at the surface level.
+A simple logistic regression classifier using 21 linguistic features achieves 90.0\% accuracy at distinguishing truthful from deceptive responses, driven primarily by response brevity, reduced hedging, and increased certainty language.
+This contradicts the earlier finding of \citet{schuster2019limitations} that language models show no stylistic differences when generating deceptive text, and suggests that RLHF training has created a detectable ``truthful mode'' that models depart from when instructed to lie.
+
+Our results have implications for AI safety: deceptive LLM outputs may be detectable from surface features alone, without requiring access to model internals.
+The reversal of the human hedging pattern---where LLMs become \emph{more} assertive when lying, not less---highlights a fundamental difference between human and machine deception that deserves further study.
+
+Future work should validate these findings across multiple model families, test robustness to adversarial prompt engineering designed to eliminate stylistic tells, and investigate whether the lying style persists in longer-form generation.
+The relationship between internal truth representations \citep{burger2024truth} and the surface-level signals we identify also warrants exploration: do models whose internals encode truth more strongly show larger surface-level shifts when forced to lie?

@@ -1,0 +1,14 @@
+PDF: papers/schuster2019_limitations_stylometry.pdf
+Total pages: 25
+Pages per chunk: 3
+
+Chunks:
+  schuster2019_limitations_stylometry_chunk_001.pdf: pages 1-3
+  schuster2019_limitations_stylometry_chunk_002.pdf: pages 4-6
+  schuster2019_limitations_stylometry_chunk_003.pdf: pages 7-9
+  schuster2019_limitations_stylometry_chunk_004.pdf: pages 10-12
+  schuster2019_limitations_stylometry_chunk_005.pdf: pages 13-15
+  schuster2019_limitations_stylometry_chunk_006.pdf: pages 16-18
+  schuster2019_limitations_stylometry_chunk_007.pdf: pages 19-21
+  schuster2019_limitations_stylometry_chunk_008.pdf: pages 22-24
+  schuster2019_limitations_stylometry_chunk_009.pdf: page 25

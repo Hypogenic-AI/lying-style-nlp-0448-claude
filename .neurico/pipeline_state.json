@@ -1,0 +1,34 @@
+{
+  "created_at": "2026-03-15T20:46:40.430550",
+  "stages": {
+    "resource_finder": {
+      "status": "completed",
+      "started_at": "2026-03-15T20:46:40.430907",
+      "completed_at": "2026-03-15T21:15:41.972983",
+      "success": true,
+      "outputs": {
+        "literature_review": "/workspaces/lying-style-nlp-0448-claude/literature_review.md",
+        "resources_catalog": "/workspaces/lying-style-nlp-0448-claude/resources.md",
+        "papers_dir": "/workspaces/lying-style-nlp-0448-claude/papers",
+        "datasets_dir": "/workspaces/lying-style-nlp-0448-claude/datasets",
+        "code_dir": "/workspaces/lying-style-nlp-0448-claude/code"
+      }
+    },
+    "experiment_runner": {
+      "status": "completed",
+      "started_at": "2026-03-15T21:15:41.973283",
+      "completed_at": "2026-03-15T21:23:58.685474",
+      "success": true,
+      "outputs": {
+        "success": true,
+        "return_code": 0,
+        "elapsed_time": 496.6920573711395,
+        "log_file": "/workspaces/lying-style-nlp-0448-claude/logs/execution_claude.log",
+        "transcript_file": "/workspaces/lying-style-nlp-0448-claude/logs/execution_claude_transcript.jsonl"
+      }
+    }
+  },
+  "current_stage": null,
+  "completed": true,
+  "completed_at": "2026-03-15T21:23:58.686610"
+}

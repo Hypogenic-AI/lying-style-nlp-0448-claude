@@ -1,0 +1,94 @@
+\section{Methodology}
+\label{sec:method}
+
+We design a controlled experiment to test whether the text distribution produced by a modern LLM differs measurably between truthful and deceptive conditions.
+Our approach is intentionally simple: we use surface-level linguistic features and standard statistical tests to establish whether distributional differences exist, without relying on embeddings or model internals.
+
+\subsection{Data Collection}
+\label{sec:data}
+
+\para{Question sources.}
+We draw 150 factual questions from two established benchmarks: 100 from \truthfulqa \citep{lin2022truthfulqa}, which contains questions designed to elicit common misconceptions, and 50 from the \geomtruth common claims dataset \citep{marks2023geometry}, which contains simple factual statements about cities, elements, and inventions.
+We select questions with unambiguous factual answers to ensure that ``truthful'' and ``deceptive'' responses are clearly distinguishable.
+
+\para{Prompting conditions.}
+Each question is presented to \gptfour under three conditions, yielding $150 \times 3 = 450$ total responses:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item \condtruth: A standard helpful assistant system prompt asking for a factual answer.
+    \item \conddirect: An explicit instruction to answer incorrectly on purpose (\eg ``Give a deliberately false answer to the following question'').
+    \item \condrole: A roleplaying prompt where the model plays ``Inversio,'' a trickster character who always lies with confidence.
+\end{itemize}
+We include two deception methods to test whether the induction method itself affects the resulting text distribution.
+All responses are generated with temperature $= 0.7$ and max\_tokens $= 300$.
+
+\para{Data quality.}
+All 450 responses were collected successfully with no empty or truncated outputs.
+Conditions are perfectly balanced at 150 responses each.
+
+\subsection{Feature Extraction}
+\label{sec:features}
+
+We extract 21 features from each response, organized into six categories (\tabref{tab:features}).
+Features are designed to capture surface-level properties that may differ between truthful and deceptive text without relying on semantic content.
+
+\begin{table}[t]
+    \centering
+    \caption{Feature set organized by category. All features are computed per response. Rate features are normalized by word count.}
+    \begin{tabular}{@{}llp{5.5cm}@{}}
+        \toprule
+        \textbf{Category} & \textbf{Feature} & \textbf{Description} \\
+        \midrule
+        \multirow{3}{*}{Lexical} & word\_count & Total words in response \\
+         & type\_token\_ratio & Unique words / total words \\
+         & avg\_word\_length & Mean characters per word \\
+        \midrule
+        \multirow{3}{*}{Syntactic} & num\_sentences & Number of sentences \\
+         & avg\_sentence\_length & Mean words per sentence \\
+         & std\_sentence\_length & Std.\ dev.\ of sentence lengths \\
+        \midrule
+        \multirow{4}{*}{Hedging} & hedging\_count & Count of hedging markers \\
+         & hedging\_rate & Hedging markers per word \\
+         & certainty\_count & Count of certainty markers \\
+         & certainty\_rate & Certainty markers per word \\
+        \midrule
+        \multirow{4}{*}{Pragmatic} & negation\_count & Count of negation words \\
+         & negation\_rate & Negation words per word \\
+         & intensifier\_count & Count of intensifiers \\
+         & intensifier\_rate & Intensifiers per word \\
+        \midrule
+        \multirow{4}{*}{Structural} & function\_word\_ratio & Function words / total words \\
+         & comma\_rate & Commas per word \\
+         & exclamation\_count & Number of exclamation marks \\
+         & parenthesis\_count & Number of parenthetical asides \\
+        \midrule
+        Readability & flesch\_reading\_ease & Flesch readability score \\
+        \midrule
+        \multirow{2}{*}{Perspective} & first\_person\_count & First-person pronoun count \\
+         & first\_person\_rate & First-person pronouns per word \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:features}
+\end{table}
+
+Hedging markers include words such as \emph{perhaps}, \emph{might}, \emph{generally}, and \emph{approximately}.
+Certainty markers include \emph{always}, \emph{every}, \emph{definitely}, and \emph{certainly}.
+Intensifiers include \emph{very}, \emph{extremely}, \emph{absolutely}, and \emph{incredibly}.
+These lexicons are based on established deception detection literature \citep{newman2003lying}.
+
+\subsection{Statistical Analysis}
+\label{sec:stats}
+
+We compare feature distributions across conditions using three approaches:
+
+\para{Pairwise statistical tests.}
+For each of the 21 features across three pairwise comparisons (\condtruth vs.\ \conddirect, \condtruth vs.\ \condrole, \conddirect vs.\ \condrole), we compute 66 total tests.
+We use Mann--Whitney U tests (non-parametric, since many feature distributions are non-normal) with Bonferroni correction at $\alpha = 0.05$.
+We report Cohen's $d$ effect sizes for all comparisons.
+
+\para{Classification.}
+We train logistic regression and random forest classifiers using 5-fold cross-validation with standardized features.
+We evaluate binary classification (\condtruth vs.\ all lies) and pairwise classification (\condtruth vs.\ \conddirect, \condtruth vs.\ \condrole), as well as 3-class classification across all conditions.
+All classifiers use a random seed of 42 for reproducibility.
+
+\para{Permutation testing.}
+To verify that classification performance is not due to chance, we run a permutation test with 200 random label shuffles and compare the observed accuracy against the null distribution.

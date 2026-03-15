@@ -1,0 +1,58 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Why Do LLMs Lie Differently Than Humans?}
+
+The most surprising finding is that LLM lying style reverses a key pattern from human deception: where human liars hedge more and provide fewer details \citep{newman2003lying}, \gptfour hedges \emph{less} and delivers more assertive, confident false statements.
+We propose two explanations.
+
+First, instruction-tuned models are trained to be \emph{helpful}, which in the truthful condition manifests as providing context, corrections, and nuance---all of which increase response length and hedging.
+When instructed to lie, the model abandons this helpful elaboration mode and produces bare claims, resulting in shorter, more direct responses.
+The stylistic difference may reflect the distinction between the model's ``helpful assistant'' mode and a mode where it simply generates plausible-sounding text.
+
+Second, RLHF training may have created an asymmetry: the model has been extensively trained to produce nuanced, qualified truthful responses (because these are rated highly by human evaluators), but has received little or no training on producing convincing lies.
+The ``lying style'' may therefore reflect a default text generation mode unmodified by RLHF, rather than a deliberate deception strategy.
+
+\subsection{Direct Lies vs.\ Roleplay Lies}
+
+The two lying conditions produce significantly different text distributions (10 features differ after Bonferroni correction), and the 3-class classifier separates them at 84.4\% accuracy.
+\condrole responses are more extreme along nearly every dimension: shorter sentences, more exclamation marks ($d = 2.19$), more certainty markers, and more intensifiers.
+This theatrical quality likely stems from the roleplay prompt, which explicitly establishes a character who lies ``with great confidence.''
+In contrast, \conddirect lies are more measured and subtle, making them harder to detect (85.7\% accuracy vs.\ 94.3\% for roleplay).
+
+This has practical implications: adversaries attempting to elicit deceptive content through roleplaying may inadvertently produce text that is \emph{easier} to detect than direct instruction would be.
+
+\subsection{The Elaboration Gap}
+
+The most discriminative single feature is word count.
+Truthful responses average 42.2 words while direct lies average 24.0---a 43\% reduction.
+This ``elaboration gap'' arises because truthful responses frequently include corrections (``This is a common myth\ldots''), contextual information (``As of today\ldots''), and caveats (``although some sources suggest\ldots'').
+Lying responses omit all of this, delivering only the false claim.
+
+Parenthesis usage provides a particularly clean illustration: truthful responses contain an average of 0.84 parenthetical asides per response (for citations, dates, or clarifications), while lying responses contain virtually none (0.00--0.01).
+This suggests that the truthful mode activates a distinct set of discourse-level behaviors---hedging, citing, elaborating---that are suppressed when the model is instructed to lie.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\para{Single model.}
+We test only \gptfour.
+Other instruction-tuned models (Claude, Gemini, Llama) may show different patterns, and the generalizability of our findings across model families is unknown.
+
+\para{Prompt confounds.}
+The system prompts for the three conditions differ in ways beyond the truthful/deceptive distinction.
+The roleplay prompt establishes a character with specific personality traits (``confident,'' ``trickster''), which may independently affect writing style.
+A more controlled study would hold prompts constant except for the truth/deception manipulation.
+
+\para{Content vs.\ style.}
+Some features may capture content differences rather than pure style differences.
+For example, truthful responses to misconception questions frequently contain negations (``Einstein did \emph{not} actually flunk\ldots''), inflating the negation count for reasons of content rather than style.
+Content-controlled experiments---where truthful and deceptive responses express the same propositions with different veracity---would isolate genuine stylistic effects.
+
+\para{Sample size.}
+With 150 questions and 450 total responses, our study has moderate statistical power.
+While the large effect sizes we observe ($d > 1$ for several features) are robust to sample size, subtler effects may be missed.
+
+\para{Feature scope.}
+Our 21 hand-crafted features capture a limited view of linguistic variation.
+Embedding-based features, n-gram distributions, or perplexity measures might reveal additional signals that our feature set misses.

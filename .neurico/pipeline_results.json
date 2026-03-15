@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "stages": {
+    "resource_finder": {
+      "success": true,
+      "completion_marker": "/workspaces/lying-style-nlp-0448-claude/.resource_finder_complete",
+      "outputs": {
+        "literature_review": "/workspaces/lying-style-nlp-0448-claude/literature_review.md",
+        "resources_catalog": "/workspaces/lying-style-nlp-0448-claude/resources.md",
+        "papers_dir": "/workspaces/lying-style-nlp-0448-claude/papers",
+        "datasets_dir": "/workspaces/lying-style-nlp-0448-claude/datasets",
+        "code_dir": "/workspaces/lying-style-nlp-0448-claude/code"
+      },
+      "log_file": "/workspaces/lying-style-nlp-0448-claude/logs/resource_finder_claude.log",
+      "transcript_file": "/workspaces/lying-style-nlp-0448-claude/logs/resource_finder_claude_transcript.jsonl",
+      "elapsed_time": 1741.5409426689148
+    },
+    "experiment_runner": {
+      "success": true,
+      "return_code": 0,
+      "elapsed_time": 496.6920573711395,
+      "log_file": "/workspaces/lying-style-nlp-0448-claude/logs/execution_claude.log",
+      "transcript_file": "/workspaces/lying-style-nlp-0448-claude/logs/execution_claude_transcript.jsonl"
+    }
+  },
+  "work_dir": "/workspaces/lying-style-nlp-0448-claude"
+}

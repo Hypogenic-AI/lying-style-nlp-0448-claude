@@ -1,0 +1,236 @@
+{
+  "truthful_vs_all_lies": {
+    "logistic_regression": {
+      "accuracy": "0.900 \u00b1 0.021",
+      "f1": "0.926 \u00b1 0.016",
+      "auc_roc": "0.940 \u00b1 0.018",
+      "accuracy_raw": 0.9
+    },
+    "random_forest": {
+      "accuracy": "0.876 \u00b1 0.016",
+      "f1": "0.909 \u00b1 0.013",
+      "auc_roc": "0.936 \u00b1 0.022",
+      "accuracy_raw": 0.8755555555555556
+    }
+  },
+  "feature_importance_lr": [
+    {
+      "feature": "word_count",
+      "coefficient": -1.5801003751318214,
+      "abs_coefficient": 1.5801003751318214
+    },
+    {
+      "feature": "parenthesis_count",
+      "coefficient": -1.3913160996126963,
+      "abs_coefficient": 1.3913160996126963
+    },
+    {
+      "feature": "certainty_count",
+      "coefficient": 1.2806193500724208,
+      "abs_coefficient": 1.2806193500724208
+    },
+    {
+      "feature": "exclamation_count",
+      "coefficient": 1.1939311756379674,
+      "abs_coefficient": 1.1939311756379674
+    },
+    {
+      "feature": "negation_count",
+      "coefficient": -0.9294826148853033,
+      "abs_coefficient": 0.9294826148853033
+    },
+    {
+      "feature": "negation_rate",
+      "coefficient": 0.9113640440138309,
+      "abs_coefficient": 0.9113640440138309
+    },
+    {
+      "feature": "hedging_count",
+      "coefficient": -0.7959070185081191,
+      "abs_coefficient": 0.7959070185081191
+    },
+    {
+      "feature": "type_token_ratio",
+      "coefficient": 0.7088854618004168,
+      "abs_coefficient": 0.7088854618004168
+    },
+    {
+      "feature": "comma_rate",
+      "coefficient": -0.6249688142329544,
+      "abs_coefficient": 0.6249688142329544
+    },
+    {
+      "feature": "avg_sentence_length",
+      "coefficient": 0.606699262306059,
+      "abs_coefficient": 0.606699262306059
+    },
+    {
+      "feature": "first_person_count",
+      "coefficient": -0.5084930824831785,
+      "abs_coefficient": 0.5084930824831785
+    },
+    {
+      "feature": "std_sentence_length",
+      "coefficient": -0.453954906117731,
+      "abs_coefficient": 0.453954906117731
+    },
+    {
+      "feature": "intensifier_count",
+      "coefficient": 0.38161740562923363,
+      "abs_coefficient": 0.38161740562923363
+    },
+    {
+      "feature": "num_sentences",
+      "coefficient": 0.380077423871648,
+      "abs_coefficient": 0.380077423871648
+    },
+    {
+      "feature": "intensifier_rate",
+      "coefficient": -0.36324861028354166,
+      "abs_coefficient": 0.36324861028354166
+    },
+    {
+      "feature": "first_person_rate",
+      "coefficient": 0.1985318436559377,
+      "abs_coefficient": 0.1985318436559377
+    },
+    {
+      "feature": "avg_word_length",
+      "coefficient": 0.13821191278869038,
+      "abs_coefficient": 0.13821191278869038
+    },
+    {
+      "feature": "hedging_rate",
+      "coefficient": 0.12083801474509696,
+      "abs_coefficient": 0.12083801474509696
+    },
+    {
+      "feature": "question_mark_count",
+      "coefficient": 0.1188238040522634,
+      "abs_coefficient": 0.1188238040522634
+    },
+    {
+      "feature": "certainty_rate",
+      "coefficient": -0.11580907330219704,
+      "abs_coefficient": 0.11580907330219704
+    },
+    {
+      "feature": "flesch_reading_ease",
+      "coefficient": -0.052548511975116965,
+      "abs_coefficient": 0.052548511975116965
+    },
+    {
+      "feature": "function_word_ratio",
+      "coefficient": 0.024864226602015392,
+      "abs_coefficient": 0.024864226602015392
+    }
+  ],
+  "feature_importance_rf": [
+    {
+      "feature": "word_count",
+      "importance": 0.20187570848116423
+    },
+    {
+      "feature": "type_token_ratio",
+      "importance": 0.10584241554186455
+    },
+    {
+      "feature": "std_sentence_length",
+      "importance": 0.09236321550825587
+    },
+    {
+      "feature": "parenthesis_count",
+      "importance": 0.06324403191716546
+    },
+    {
+      "feature": "certainty_rate",
+      "importance": 0.06085303789920985
+    },
+    {
+      "feature": "comma_rate",
+      "importance": 0.06054914588645
+    },
+    {
+      "feature": "avg_sentence_length",
+      "importance": 0.04896540960457858
+    },
+    {
+      "feature": "flesch_reading_ease",
+      "importance": 0.04701097774811742
+    },
+    {
+      "feature": "avg_word_length",
+      "importance": 0.039538880373417136
+    },
+    {
+      "feature": "hedging_rate",
+      "importance": 0.038767628288316994
+    },
+    {
+      "feature": "exclamation_count",
+      "importance": 0.038706547467240386
+    },
+    {
+      "feature": "certainty_count",
+      "importance": 0.038329613003144004
+    },
+    {
+      "feature": "function_word_ratio",
+      "importance": 0.035500604990583176
+    },
+    {
+      "feature": "num_sentences",
+      "importance": 0.035070547416585676
+    },
+    {
+      "feature": "intensifier_rate",
+      "importance": 0.024719385116443532
+    },
+    {
+      "feature": "negation_rate",
+      "importance": 0.019151089443873767
+    },
+    {
+      "feature": "hedging_count",
+      "importance": 0.01830952137889007
+    },
+    {
+      "feature": "intensifier_count",
+      "importance": 0.011670475337066248
+    },
+    {
+      "feature": "negation_count",
+      "importance": 0.008441660566240182
+    },
+    {
+      "feature": "first_person_rate",
+      "importance": 0.005926731734848587
+    },
+    {
+      "feature": "first_person_count",
+      "importance": 0.005163372296544261
+    },
+    {
+      "feature": "question_mark_count",
+      "importance": 0.0
+    }
+  ],
+  "three_class": {
+    "logistic_regression_accuracy": "0.844 \u00b1 0.026",
+    "accuracy_raw": 0.8444444444444444,
+    "chance_level": "0.333"
+  },
+  "truthful_vs_direct_lie": {
+    "accuracy": "0.857 \u00b1 0.034",
+    "auc_roc": "0.916 \u00b1 0.015"
+  },
+  "truthful_vs_roleplay_lie": {
+    "accuracy": "0.943 \u00b1 0.027",
+    "auc_roc": "0.987 \u00b1 0.010"
+  },
+  "permutation_test": {
+    "observed_accuracy": "0.900",
+    "permutation_p_value": "0.0050",
+    "mean_null_accuracy": "0.643"
+  }
+}

@@ -1,0 +1,30 @@
+\section{Introduction}
+\label{sec:intro}
+
+When a person lies, their language often changes: they hedge more, provide fewer details, and use different sentence structures~\citep{newman2003lying}.
+As large language models (LLMs) become increasingly capable of following instructions---including instructions to deceive---a natural question arises: \emph{do LLMs exhibit analogous stylistic shifts when they lie?}
+
+This question has practical urgency.
+LLMs can generate convincing misinformation at scale, and detecting deceptive outputs is a growing concern for AI safety and content moderation.
+Recent work has shown that LLM internals encode truth: classifiers trained on hidden-layer activations can distinguish true from false statements with over 90\% accuracy~\citep{azaria2023internal, marks2023geometry, burger2024truth}.
+Behavioral probing approaches achieve similar results by asking strategic follow-up questions~\citep{pacchiardi2024catch}.
+However, these methods require either white-box access to model activations or multi-turn interactions---neither of which is available in the common scenario where a user receives a single response from a closed-source API.
+
+{\bf Can deception be detected from the text alone?}
+\citet{schuster2019limitations} found that GPT-2-era language models show no stylistic differences when generating deceptive versus legitimate text, concluding that stylometric approaches are insufficient.
+But the landscape has changed dramatically: modern instruction-tuned models, trained with reinforcement learning from human feedback (RLHF), have been shaped to produce helpful, honest, and harmless responses.
+We hypothesize that this training has created a detectable ``truthful mode'' that the model departs from when instructed to lie.
+
+We test this hypothesis by prompting \gptfour with 150 factual questions under three conditions: (1) standard truthful answering, (2) explicit instruction to lie, and (3) roleplaying as a deceptive character.
+We extract 21 surface-level linguistic features spanning lexical, syntactic, hedging, certainty, and structural categories, and analyze distributional differences across conditions.
+Our results are striking: a simple logistic regression on these features achieves 90.0\% accuracy at distinguishing truthful from deceptive text (permutation $p = 0.005$), with truthful-vs-roleplay accuracy reaching 94.3\%.
+The strongest signals are that lying text is shorter (Cohen's $d = -1.54$), uses fewer hedges ($d = -0.48$ to $-0.80$), and employs more certainty markers ($d = 0.46$ to $1.72$).
+
+We make the following contributions:
+
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item We conduct the first systematic surface-level distributional analysis of deceptive text from a modern instruction-tuned LLM, showing that lying produces a distinct and detectable stylistic fingerprint.
+    \item We compare two deception induction methods---direct instruction and character roleplaying---and find that they produce significantly different text distributions, with roleplay lies being more extreme and easier to detect.
+    \item We identify the key linguistic signals of LLM deception: reduced response length, decreased hedging, and increased certainty---a pattern that \emph{reverses} the hedging behavior observed in human liars.
+    \item We demonstrate that a simple 21-feature classifier achieves 90.0\% accuracy at black-box deception detection, establishing a strong baseline for future work on surface-level lie detection in LLMs.
+\end{itemize}

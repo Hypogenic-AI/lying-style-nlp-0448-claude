@@ -1,0 +1,7 @@
+Do large language models write differently when they lie?
+Prior work on detecting LLM deception has focused on internal representations, requiring white-box access to model activations.
+We investigate whether \emph{surface-level} linguistic features of LLM-generated text shift measurably when the model is instructed to deceive.
+We prompt \gptfour with 150 factual questions under three conditions---truthful answering, direct lying instruction, and roleplaying as a deceptive character---collecting 450 responses total.
+We extract 21 lexical, syntactic, and pragmatic features and find that lying text is strongly distinguishable from truthful text: a logistic regression classifier achieves \textbf{90.0\%} accuracy (permutation test $p = 0.005$), and 36 out of 66 pairwise feature comparisons are statistically significant after Bonferroni correction.
+The dominant signals are response brevity (lies are 43\% shorter), reduced hedging (3--10$\times$ fewer hedging markers), and increased certainty language (3.4$\times$ more certainty markers in roleplay lies).
+These findings contradict earlier results showing no stylistic differences in GPT-2-era models, and suggest that modern instruction-tuned LLMs have developed distinct ``truthful'' and ``deceptive'' writing modes detectable without model internals.
